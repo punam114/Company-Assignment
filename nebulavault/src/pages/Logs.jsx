@@ -12,7 +12,15 @@ export default function Logs({ isFrozen }) {
     const [error, setError] = useState(null);
     const [newItemName, setNewItemName] = useState('');
     const [isAdding, setIsAdding] = useState(false);
-    const { currentPage, filter, setCurrentPage, setFilter } = useTabState();
+    const { currentPage, filter, setCurrentPage, setFilter } = useTabState('logs');
+
+    // Clear search when component unmounts or tab changes
+    useEffect(() => {
+        return () => {
+            // Optional: Clear search when leaving tab
+            // setFilter('');
+        };
+    }, []);
 
     async function fetchData() {
         try {
@@ -35,16 +43,28 @@ export default function Logs({ isFrozen }) {
         fetchData();
     }, [isFrozen]);
 
-    const filteredData = filter
-        ? data.filter(item =>
-            item.name?.toLowerCase().includes(filter.toLowerCase()) ||
-            item.id?.toLowerCase().includes(filter.toLowerCase())
-        )
+    const filteredData = filter.trim()
+        ? data.filter(item => {
+            const searchTerm = filter.toLowerCase().trim();
+            return (
+                item.name?.toLowerCase().includes(searchTerm) ||
+                item.id?.toLowerCase().includes(searchTerm) ||
+                item.creator?.toLowerCase().includes(searchTerm) ||
+                item.type?.toLowerCase().includes(searchTerm)
+            );
+        })
         : data;
 
     const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
     const paginatedData = filteredData.slice(start, start + ITEMS_PER_PAGE);
+
+    // Reset to page 1 if current page exceeds total pages after filtering
+    useEffect(() => {
+        if (currentPage > totalPages && totalPages > 0) {
+            setCurrentPage(1);
+        }
+    }, [filteredData.length, currentPage, totalPages, setCurrentPage]);
 
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -74,14 +94,48 @@ export default function Logs({ isFrozen }) {
             <div style={{ paddingBottom: '16px', borderBottom: '1px solid #d1d5db', marginBottom: '20px' }}>
                 <h3 style={{ marginBottom: '12px' }}>Universe Logs</h3>
                 <div style={{ position: 'relative', marginBottom: '16px' }}>
-                    <Search size={16} style={{ position: 'absolute', left: '10px', top: '10px', color: '#6b7280' }} />
+                    <Search size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#6b7280', pointerEvents: 'none' }} />
                     <input
                         type="text"
-                        placeholder="Search through the history..."
+                        placeholder="Search logs by name, ID, creator, or type..."
                         value={filter}
                         onChange={(e) => { setFilter(e.target.value); setCurrentPage(1); }}
-                        style={{ paddingLeft: '36px', width: '100%', padding: '8px', border: '1px solid #d1d5db', borderRadius: '4px' }}
+                        style={{ 
+                            paddingLeft: '40px', 
+                            paddingRight: '12px',
+                            width: '100%', 
+                            padding: '10px', 
+                            border: '1px solid #d1d5db', 
+                            borderRadius: '6px',
+                            fontSize: '14px',
+                            transition: 'border-color 0.2s ease'
+                        }}
                     />
+                    {filter && (
+                        <button
+                            onClick={() => { setFilter(''); setCurrentPage(1); }}
+                            style={{
+                                position: 'absolute',
+                                right: '12px',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                background: 'none',
+                                border: 'none',
+                                color: '#6b7280',
+                                cursor: 'pointer',
+                                fontSize: '18px',
+                                padding: '0',
+                                width: '20px',
+                                height: '20px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                            title="Clear search"
+                        >
+                            ×
+                        </button>
+                    )}
                 </div>
 
                 <form onSubmit={handleAdd} style={{ display: 'flex', gap: '8px' }}>
@@ -114,6 +168,20 @@ export default function Logs({ isFrozen }) {
             </div>
 
             <div>
+                {filter && (
+                    <div style={{ 
+                        marginBottom: '16px', 
+                        padding: '8px 12px', 
+                        backgroundColor: '#f0f9ff', 
+                        border: '1px solid #bae6fd', 
+                        borderRadius: '4px',
+                        fontSize: '13px',
+                        color: '#0369a1'
+                    }}>
+                        Found {filteredData.length} log{filteredData.length !== 1 ? 's' : ''} matching "{filter}"
+                        {filteredData.length === 0 && ' - try a different search term'}
+                    </div>
+                )}
                 {loading && data.length === 0 ? (
                     <div style={{ padding: '40px', textAlign: 'center' }}>
                         <Loader2 size={24} style={{ color: '#3b82f6' }} />

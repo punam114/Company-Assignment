@@ -172,6 +172,20 @@ export default function Artifacts({ isFrozen }) {
             </div>
 
             <div>
+                {filter && (
+                    <div style={{ 
+                        marginBottom: '16px', 
+                        padding: '8px 12px', 
+                        backgroundColor: '#f0f9ff', 
+                        border: '1px solid #bae6fd', 
+                        borderRadius: '4px',
+                        fontSize: '13px',
+                        color: '#0369a1'
+                    }}>
+                        Found {filteredData.length} artifact{filteredData.length !== 1 ? 's' : ''} matching "{filter}"
+                        {filteredData.length === 0 && ' - try a different search term'}
+                    </div>
+                )}
                 {loading && data.length === 0 ? (
                     <div style={{ padding: '40px', textAlign: 'center' }}>
                         <Loader2 size={24} style={{ color: '#3b82f6' }} />
