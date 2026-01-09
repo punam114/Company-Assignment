@@ -1,0 +1,469 @@
+{
+    "info": {
+        "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "name": "RuDo Wealth API (COMPLETED)",
+        "description": "Complete testing for ALL RuDo Wealth API endpoints using Mock Auth.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. Signup (Alice)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/auth/signup",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "auth",
+                        "signup"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "2. Login (Alice)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/auth/login",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "auth",
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "3. Get My Profile",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/users/profile",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "users",
+                        "profile"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "4. Get All My Balances",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/users/balances",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "users",
+                        "balances"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "5. Create a Group",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Goa Trip 2024\",\n    \"description\": \"Group for Goa vacation expenses\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/groups",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "groups"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "6. Get My Groups",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/groups",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "groups"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "7. Get Group Details",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/groups/:groupId",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "groups",
+                        ":groupId"
+                    ],
+                    "variable": [
+                        {
+                            "key": "groupId",
+                            "value": "PASTE_ID"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "8. Add Bob to Group",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"bob@example.com\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/groups/:groupId/members",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "groups",
+                        ":groupId",
+                        "members"
+                    ],
+                    "variable": [
+                        {
+                            "key": "groupId",
+                            "value": "PASTE_ID"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "9. Remove Member from Group",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/groups/:groupId/members/:userId",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "groups",
+                        ":groupId",
+                        "members",
+                        ":userId"
+                    ],
+                    "variable": [
+                        {
+                            "key": "groupId",
+                            "value": "PASTE_ID"
+                        },
+                        {
+                            "key": "userId",
+                            "value": "PASTE_ID"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "10. Add Expense (Equal Split)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"description\": \"Lunch\",\n    \"amount\": 2000,\n    \"group\": \"PASTE_GROUP_ID\",\n    \"payer\": \"PASTE_ALICE_ID\",\n    \"splitType\": \"EQUAL\",\n    \"participants\": [\n        { \"user\": \"PASTE_ALICE_ID\" },\n        { \"user\": \"PASTE_BOB_ID\" }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/expenses",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "expenses"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "11. Get Group Expenses",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/expenses/group/:groupId",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "expenses",
+                        "group",
+                        ":groupId"
+                    ],
+                    "variable": [
+                        {
+                            "key": "groupId",
+                            "value": "PASTE_ID"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "12. Check Group Debts",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/debts/group/:groupId",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "debts",
+                        "group",
+                        ":groupId"
+                    ],
+                    "variable": [
+                        {
+                            "key": "groupId",
+                            "value": "PASTE_ID"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "13. Check Global Debts",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/debts/global",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "debts",
+                        "global"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "14. Record Settlement",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "bob@example.com",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"payee\": \"PASTE_ALICE_ID\",\n    \"amount\": 1000,\n    \"group\": \"PASTE_GROUP_ID\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/api/settlements",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "settlements"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "15. Delete Expense",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "x-mock-user",
+                        "value": "alice@example.com",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/api/expenses/:expenseId",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "expenses",
+                        ":expenseId"
+                    ],
+                    "variable": [
+                        {
+                            "key": "expenseId",
+                            "value": "PASTE_ID"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:5000",
+            "type": "string"
+        }
+    ]
+}
