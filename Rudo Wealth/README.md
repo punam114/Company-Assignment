@@ -23,13 +23,18 @@ RuDo Wealth is a robust, production-grade backend service designed to manage sha
 ## 📁 System Architecture
 
 ```text
-src/
-├── config/       # Configuration for Firebase and MongoDB
-├── controllers/  # Request handlers and business logic
-├── middleware/   # Authentication and error handling
-├── models/       # Mongoose schemas (User, Group, Expense, Settlement)
-├── routes/       # API endpoint definitions
-└── services/     # core algorithms (Debt Simplification, Balances)
+.
+├── src/
+│   ├── config/       # Configuration for Firebase and MongoDB
+│   ├── controllers/  # Request handlers and business logic
+│   ├── middleware/   # Authentication and error handling
+│   ├── models/       # Mongoose schemas
+│   ├── routes/       # API endpoint definitions
+│   ├── services/     # Core algorithms
+│   └── app.js        # Express app definition
+├── server.js         # Entry point (Live server)
+├── package.json
+└── .env
 ```
 
 ## ⚙️ Installation & Setup
