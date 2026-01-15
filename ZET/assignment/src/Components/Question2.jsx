@@ -45,7 +45,8 @@ export function FileUpload() {
 
   return (
     <>
-    <h2>Second Assignment</h2>
+   <div style={{border:"1px solid", padding:"20px", marginTop:"20px"}}>
+     <h2>Second Assignment</h2>
       <form onSubmit={handleSubmit}>
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -54,6 +55,10 @@ export function FileUpload() {
         />
         <button type="submit" disabled={loading}>Upload</button>
       </form>
+
+      {error && <p style={{color:"red"}}>{error}</p>}
+      {message && <p style={{color:"green"}}>{message}</p>}
+   </div>
     </>
   );
 }

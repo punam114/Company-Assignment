@@ -42,7 +42,8 @@ export function Authentication() {
 
   return (
     <>
-      <h2>First Assignment</h2>
+      <div style={{border:"1px solid" , padding:"20px"}}>
+        <h2>First Assignment</h2>
       <form onSubmit={handleSubmit}>
         <input
           onChange={(e) => setEmail(e.target.value)}
@@ -55,6 +56,7 @@ export function Authentication() {
           type="password"
           placeholder="Enter password"
         />
+        <br></br>
         <button type="submit" disabled={loading}>
           Login
         </button>
@@ -70,6 +72,7 @@ export function Authentication() {
           </p>
         </div>
       )}
+      </div>
     </>
   );
 }

@@ -28,7 +28,8 @@ function deleteBtn(index){
 
     return(
         <>
-         <h2>Third Assignment</h2>
+        <div style={{border:"1px solid", padding:"20px",marginTop:"20px"}}>
+             <h2>Third Assignment</h2>
         <input value={task} onChange={(e)=>setTask(e.target.value)} type="text" placeholder="Enter Task"/>
         <button onClick={addTask}>Add</button>
         <ul>
@@ -39,6 +40,7 @@ function deleteBtn(index){
                 </li>
             ))}
         </ul>
+        </div>
         </>
     )
 }
