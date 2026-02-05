@@ -63,18 +63,4 @@ const productSchema = new mongoose.Schema({
 productSchema.index({ title: 'text', description: 'text' });
 productSchema.index({ price: 1, rating: -1 });
 
-productSchema.virtual('discount').get(function () {
-  return Math.round(((this.mrp - this.price) / this.mrp) * 100);
-});
-
-productSchema.methods.isInStock = function () {
-  return this.stock > 0;
-};
-
-productSchema.statics.findByPriceRange = function (minPrice, maxPrice) {
-  return this.find({
-    price: { $gte: minPrice, $lte: maxPrice }
-  });
-};
-
 module.exports = mongoose.model('Product', productSchema);

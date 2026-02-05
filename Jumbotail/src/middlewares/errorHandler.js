@@ -32,15 +32,10 @@ const errorHandler = (err, req, res, next) => {
         code = 'INVALID_ID';
     }
 
-    if (process.env.NODE_ENV === 'development') {
-        console.error('❌ Error:', err);
-    }
-
     res.status(statusCode).json({
         success: false,
         error: message,
-        code: code,
-        ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+        code: code
     });
 };
 
@@ -49,13 +44,8 @@ const notFound = (req, res, next) => {
     next(error);
 };
 
-const asyncHandler = (fn) => (req, res, next) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
-};
-
 module.exports = {
     ApiError,
     errorHandler,
-    notFound,
-    asyncHandler
+    notFound
 };
