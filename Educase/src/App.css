@@ -1,0 +1,137 @@
+body {
+  font-family: sans-serif;
+  background-color: #f7f8f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background-color: #f7f8f9;
+}
+
+h2 {
+  font-size: 28px;
+  color: #1d2226;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #8c9096;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #6C25FF;
+  margin-bottom: 5px;
+}
+
+.req {
+  color: red;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #CBCBCB;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.radio-group-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.radio-inline {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #6C25FF;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.secondary {
+  background-color: #cebfff;
+  color: #1d2226;
+}
+
+.disabled {
+  background-color: #CBCBCB;
+}
+
+/* Profile specific */
+.profile-wrap {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.profile-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.profile-avatar-box {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+}
+
+.profile-avatar-box img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.profile-info-box {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.profile-info-box h3 {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.profile-info-box p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.dashed-line {
+  border-top: 1px dashed #CBCBCB;
+  margin: 20px 0;
+}
+
+.profile-desc {
+  color: #8c9096;
+  font-size: 14px;
+  line-height: 1.5;
+}
