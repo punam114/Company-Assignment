@@ -4,7 +4,7 @@ let jwt = require("jsonwebtoken");
 
 exports.signup = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, phone } = req.body;
 
     if (!name || !email || !password || !role) {
       return res.status(400).json({ message: "Invalid Cradantial" });
@@ -19,6 +19,7 @@ exports.signup = async (req, res) => {
       email,
       password: hashPass,
       role,
+      phone,
     });
 
     return res.status(201).json({ message: "User Created Sucessfullt", user });
@@ -48,7 +49,17 @@ exports.login = async (req, res) => {
       process.env.JWT_SECRET,
     );
 
-    res.status(200).json({message :"Login Sucessfully",token,user:{id:user._id,name: user.name, email: user.email, role: user.role}})
+    res.status(200).json({
+      message: "Login Sucessfully",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        phone: user.phone
+      }
+    })
 
   } catch (error) {
     return res.status(500).json({ message: error.message });
